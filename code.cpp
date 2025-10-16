@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -225,7 +227,7 @@ public:
         Node* current = head;
         if (!current) {
             cout << "List is empty." << endl;
-            return "Empty";
+            return "";
         }
         while (current) {
             count++;
@@ -234,6 +236,9 @@ public:
             }
             current = current->next;
         }
+
+        cout << "No position found" << endl;
+        return "";
     }
 };
 
@@ -241,6 +246,7 @@ public:
 //Output the line
 //Chances for each event
 int main() {
+    srand(time(0));
     cout << "test4" << endl;
     //File Opening
 	ifstream file;
@@ -297,7 +303,8 @@ int main() {
             if (prob <= 10) { //Any customer leaving
                 //Event D
                 int lineSize = Coffeeline->get_Size();
-                int randCount = rand() % lineSize;
+                int randCount = rand() % lineSize + 1;
+                cout << "Line Size: " << lineSize << " Count: " << randCount << endl;
                 string name = Coffeeline->get_Name(randCount);
                 Coffeeline->delete_pos(randCount);
                 cout << "\t" << name << " left the line" << endl;
