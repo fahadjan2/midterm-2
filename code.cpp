@@ -2,11 +2,10 @@
 // IDE used: Visual Studio
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-
-void RandomName(ifstream file, int value);
 
 class DoublyLinkedList {
 private:
@@ -221,42 +220,51 @@ int main() {
 	    return 1;
 	}
 
+    //Populates a vector with the names
+    vector<string> names;
+    string name;
+    while (getline(file, name)) {
+        names.push_back(name);
+    }
+    file.close();
+
     DoublyLinkedList * Coffeeline = new DoublyLinkedList;
-    Coffeeline->push_back();
     cout << "Store Opens:" << endl;
-    for (int minute = 0; minute <= 20; ++minute) {
-        int nameprob = rand() % 100; // 1-99 names
+    for (int minute = 0; minute <= 20; minute++) {
+        
         int prob = rand() % 100 + 1; // 1-100 for event
         if (prob <= 60) {
-            //Event A      
+            //Event A     
+            int nameprob = rand() % 100; // 0-99 names 
+            string name = names[nameprob];
         }
         prob = rand() % 100 + 1;
         if (prob <= 40) {
+            int nameprob = rand() % 100;
+            string name = names[nameprob];
             //Event B
         }
         prob = rand() % 100 + 1;
         if (prob <= 20) {
             //Event C
+            int nameprob = rand() % 100;
+            string name = names[nameprob];
         }
         prob = rand() % 100 + 1;
         if (prob <= 10) {
             //Event D
+             int nameprob = rand() % 100;
+            string name = names[nameprob];
         }
         prob = rand() % 100 + 1;
         if (prob <= 10) {
             //Event E
+            int nameprob = rand() % 100;
+            string name = names[nameprob];
         }
     }
     
-    file.close();
     delete Coffeeline;
     
     return 0;
-}
-
-void RandomName(ifstream file, int value) {
-    int name;
-    while (getline(file, name)) {
-
-    }
 }
