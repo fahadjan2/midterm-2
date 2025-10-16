@@ -1,9 +1,12 @@
 // COMSC-210 | Midterm #2 | Fahad Fawad Ahmad 
 // IDE used: Visual Studio
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+
+void RandomName(ifstream file, int value);
 
 class DoublyLinkedList {
 private:
@@ -209,15 +212,51 @@ public:
 //Output the line
 //Chances for each event
 int main() {
+    cout << "test1" << endl;
+    //File Opening
+	ifstream file;
+	file.open("names.txt");
+	if (!file.is_open()) {
+	    cout << "Failed to open file" << endl;
+	    return 1;
+	}
+
+    DoublyLinkedList * Coffeeline = new DoublyLinkedList;
+    Coffeeline->push_back();
     cout << "Store Opens:" << endl;
     for (int minute = 0; minute <= 20; ++minute) {
-        int prob = rand() % 100 + 1;
+        int nameprob = rand() % 100; // 1-99 names
+        int prob = rand() % 100 + 1; // 1-100 for event
         if (prob <= 60) {
-            // perform Event A
-
-        elseif (prob <= 40)
+            //Event A      
+        }
+        prob = rand() % 100 + 1;
+        if (prob <= 40) {
+            //Event B
+        }
+        prob = rand() % 100 + 1;
+        if (prob <= 20) {
+            //Event C
+        }
+        prob = rand() % 100 + 1;
+        if (prob <= 10) {
+            //Event D
+        }
+        prob = rand() % 100 + 1;
+        if (prob <= 10) {
+            //Event E
         }
     }
     
+    file.close();
+    delete Coffeeline;
+    
     return 0;
+}
+
+void RandomName(ifstream file, int value) {
+    int name;
+    while (getline(file, name)) {
+
+    }
 }
