@@ -187,7 +187,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << endl;
+            cout << "\t\t" << current->data << endl;
             current = current->next;
         }
         cout << endl;
@@ -211,7 +211,7 @@ public:
         Node* current = head;
         if (!current) { 
             cout << "List is empty." << endl;
-            return;
+            return 1;
         }
         while (current) {
             count++;
@@ -225,7 +225,7 @@ public:
         Node* current = head;
         if (!current) {
             cout << "List is empty." << endl;
-            return;
+            return "Empty";
         }
         while (current) {
             count++;
@@ -241,7 +241,7 @@ public:
 //Output the line
 //Chances for each event
 int main() {
-    cout << "test1" << endl;
+    cout << "test4" << endl;
     //File Opening
 	ifstream file;
 	file.open("names.txt");
@@ -276,37 +276,42 @@ int main() {
                 int nameprob = rand() % 100; //0-99 names 
                 string name = names[nameprob];
                 Coffeeline->push_back(name);
+                cout << "\t" << name << " joins the line" << endl;
             }
             prob = rand() % 100 + 1;
             if (prob <= 40) { //Customer being served
                 //Event B
-                int nameprob = rand() % 100;
-                string name = names[nameprob];
-                Coffeeline->push_back(name);
+                string name = Coffeeline->get_Name(1);
+                Coffeeline->pop_front();
+                cout << "\t" << name << " is served" << endl;
             }
             prob = rand() % 100 + 1;
             if (prob <= 20) { //Customer at the end of line leaving
                 //Event C
-                int nameprob = rand() % 100;
-                string name = names[nameprob];
-                Coffeeline->push_back(name);
+                int lineSize = Coffeeline->get_Size();
+                string name = Coffeeline->get_Name(lineSize);
+                Coffeeline->pop_back();
+                cout << "\t" << name << " (at the rear) left the line" << endl;
             }
             prob = rand() % 100 + 1;
             if (prob <= 10) { //Any customer leaving
                 //Event D
                 int lineSize = Coffeeline->get_Size();
                 int randCount = rand() % lineSize;
+                string name = Coffeeline->get_Name(randCount);
                 Coffeeline->delete_pos(randCount);
+                cout << "\t" << name << " left the line" << endl;
             }
             prob = rand() % 100 + 1;
             if (prob <= 10) { //VIP walking to the front
                 //Event E
                 int nameprob = rand() % 100;
-                string name = names[nameprob] + " (VIP)";
+                string name = names[nameprob];
                 Coffeeline->push_front(name);
+                cout << "\t" << name << " (VIP) joins the front of the line" << endl;
             }
         }
-        cout << "Resulting line: " << endl;
+        cout << "\tResulting line: " << endl;
         Coffeeline->print();
         cout << endl;
     }
