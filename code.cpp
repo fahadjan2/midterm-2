@@ -205,6 +205,36 @@ public:
         }
         cout << endl;
     }
+
+    int get_Size() { //Gets the size of line
+        int count = 0;
+        Node* current = head;
+        if (!current) { 
+            cout << "List is empty." << endl;
+            return;
+        }
+        while (current) {
+            count++;
+            current = current->next;
+        }
+        return count;
+    }
+
+    string get_Name(int pos) { //gets name at position
+        int count = 0;
+        Node* current = head;
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+        }
+        while (current) {
+            count++;
+            if (count == pos) {
+                return current->data;
+            }
+            current = current->next;
+        }
+    }
 };
 
 //Add 5 new at the beginning
@@ -231,7 +261,7 @@ int main() {
     DoublyLinkedList * Coffeeline = new DoublyLinkedList;
     cout << "Store Opens:" << endl;
     for (int minute = 0; minute < 20; minute++) {
-        if (minute == 0) {
+        if (minute == 0) { //At the start, adds 5 people to the line
             for (int i = 0; i < 5; i++) {
                 int nameprob = rand() % 100;        
                 string name = names[nameprob];
@@ -240,40 +270,40 @@ int main() {
         }
         else {
             cout << "Time Step #" << minute + 1 << ":" << endl; 
-            int prob = rand() % 100 + 1; // 1-100 for event
-            if (prob <= 60) {
+            int prob = rand() % 100 + 1; //1-100 chance
+            if (prob <= 60) { //New customer joining end of line
                 //Event A     
-                int nameprob = rand() % 100; // 0-99 names 
+                int nameprob = rand() % 100; //0-99 names 
                 string name = names[nameprob];
                 Coffeeline->push_back(name);
             }
             prob = rand() % 100 + 1;
-            if (prob <= 40) {
+            if (prob <= 40) { //Customer being served
                 //Event B
                 int nameprob = rand() % 100;
                 string name = names[nameprob];
                 Coffeeline->push_back(name);
             }
             prob = rand() % 100 + 1;
-            if (prob <= 20) {
+            if (prob <= 20) { //Customer at the end of line leaving
                 //Event C
                 int nameprob = rand() % 100;
                 string name = names[nameprob];
                 Coffeeline->push_back(name);
             }
             prob = rand() % 100 + 1;
-            if (prob <= 10) {
+            if (prob <= 10) { //Any customer leaving
                 //Event D
-                int nameprob = rand() % 100;
-                string name = names[nameprob];
-                Coffeeline->push_back(name);
+                int lineSize = Coffeeline->get_Size();
+                int randCount = rand() % lineSize;
+                Coffeeline->delete_pos(randCount);
             }
             prob = rand() % 100 + 1;
-            if (prob <= 10) {
+            if (prob <= 10) { //VIP walking to the front
                 //Event E
                 int nameprob = rand() % 100;
-                string name = names[nameprob];
-                Coffeeline->push_back(name);
+                string name = names[nameprob] + " (VIP)";
+                Coffeeline->push_front(name);
             }
         }
         cout << "Resulting line: " << endl;
