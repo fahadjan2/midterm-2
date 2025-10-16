@@ -205,9 +205,19 @@ public:
     }
 };
 
+//Add 5 new at the beginning
+//Output the line
+//Chances for each event
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
-   
+    cout << "Store Opens:" << endl;
+    for (int minute = 0; minute <= 20; ++minute) {
+        int prob = rand() % 100 + 1;
+        if (prob <= 60) {
+            // perform Event A
+
+        elseif (prob <= 40)
+        }
+    }
     
     return 0;
 }
