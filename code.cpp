@@ -242,12 +242,8 @@ public:
     }
 };
 
-//Add 5 new at the beginning
-//Output the line
-//Chances for each event
 int main() {
     srand(time(0));
-    cout << "test4" << endl;
     //File Opening
 	ifstream file;
 	file.open("names.txt");
@@ -304,7 +300,6 @@ int main() {
                 //Event D
                 int lineSize = Coffeeline->get_Size();
                 int randCount = rand() % lineSize + 1;
-                cout << "Line Size: " << lineSize << " Count: " << randCount << endl;
                 string name = Coffeeline->get_Name(randCount);
                 Coffeeline->delete_pos(randCount);
                 cout << "\t" << name << " left the line" << endl;
